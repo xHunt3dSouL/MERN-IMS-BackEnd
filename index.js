@@ -37,7 +37,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter); // Product route
 app.use(errorRouter); // Error route
-
 // Start the server
 app.listen(process.env.PORT, () => {
   console.log(`Server Started At Port ${process.env.PORT}`);

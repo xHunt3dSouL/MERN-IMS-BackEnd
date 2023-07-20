@@ -48,10 +48,28 @@ const deleteUser = async (req, res) => {
   }
 };
 
+// Function to check if a user is an admin
+const checkAdminStatus = async (req, res) => {
+  try {
+    const { userID } = req.params;
+    const user = await UserModel.findById(userID);
+
+    if (user && user.isAdmin) {
+      res.status(200).json({ isAdmin: true });
+    } else {
+      res.status(200).json({ isAdmin: false });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Something went wrong", error: err });
+  }
+};
+
 // Exporting the controller functions
 module.exports = {
   getAllUsers,
   getSingleUser,
   updateUser,
   deleteUser,
+  checkAdminStatus,
 };

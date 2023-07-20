@@ -4,6 +4,7 @@ const {
   getSingleUser,
   updateUser,
   deleteUser,
+  checkAdminStatus,
 } = require("../controllers/user");
 
 const {
@@ -12,6 +13,8 @@ const {
 } = require("../middleware/auth");
 
 const router = express.Router();
+
+router.get("/:userID/is-admin", verifyTokenUserOrAdmin, checkAdminStatus);
 
 router.get("/", verifyTokenAdmin, getAllUsers);
 
